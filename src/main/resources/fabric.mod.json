@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "conway3d",
+	"version": "${version}",
+	"name": "Conway3D",
+	"description": "This is a mod to simulate conway's game of life in 3D!",
+	"authors": [
+		"Frostechnical!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/conway3d/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.frosty.conway3d.Conway3D"
+		],
+		"fabric-datagen": [
+			"net.frosty.conway3d.Conway3DDataGenerator"
+		],
+		"client": [
+			"net.frosty.conway3d.Conway3DClient"
+		]
+	},
+	"mixins": [
+		"conway3d.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
