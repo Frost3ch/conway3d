@@ -48,34 +48,31 @@ public class ControllerItem extends Item {
                 BlockState state = world.getBlockState(conwayPos);
                 int noNeighbours =-1;
 
-                if (is3D==true) {
+                if (is3D) {
                     //Find Total Number of Neighbours
                     for (int i = -1; i < 2; i++) {
                         for (int j = -1; j < 2; j++) {
                             for (int k = -1; k < 2; k++) {
                                 BlockState neighbourState = world.getBlockState(new BlockPos(conwayPos.getX() + i, conwayPos.getY() + j, conwayPos.getZ() + k));
-                                int newNeighbours;
                                 if (neighbourState.getBlock() == state.getBlock()) {
                                     noNeighbours++;
-                                    newNeighbours = -1;
                                 } else {
-                                    newNeighbours = 0;
-                                }
-                                BlockPos newPos = new BlockPos(conwayPos.getX() + i, conwayPos.getY() + j, conwayPos.getZ() + k);
-                                for (int a = -1; a < 2; a++) {
-                                    for (int b = -1; b < 2; b++) {
-                                        for (int c = -1; c < 2; c++) {
-                                            BlockState newNeighbourState = world.getBlockState(new BlockPos(newPos.getX() + a, newPos.getY() + b, newPos.getZ() + c));
-                                            if (newNeighbourState.getBlock() == state.getBlock()) {
-                                                newNeighbours++;
+                                    int newNeighbours = 0;
+                                    BlockPos newPos = new BlockPos(conwayPos.getX() + i, conwayPos.getY() + j, conwayPos.getZ() + k);
+                                    for (int a = -1; a < 2; a++) {
+                                        for (int b = -1; b < 2; b++) {
+                                            for (int c = -1; c < 2; c++) {
+                                                BlockState newNeighbourState = world.getBlockState(new BlockPos(newPos.getX() + a, newPos.getY() + b, newPos.getZ() + c));
+                                                if (newNeighbourState.getBlock() == state.getBlock()) {
+                                                    newNeighbours++;
+                                                }
                                             }
                                         }
                                     }
+                                    if (newNeighbours >= bornRule1 && newNeighbours <= bornRule2) {
+                                        ControllerItem.toBeBorn.add(newPos);
+                                    }
                                 }
-                                if (newNeighbours >= bornRule1 && newNeighbours <= bornRule2) {
-                                    ControllerItem.toBeBorn.add(newPos);
-                                }
-
                             }
                         }
                     }
@@ -84,36 +81,34 @@ public class ControllerItem extends Item {
                         ControllerItem.toKill.add(conwayPos);
                     }
                 }
-                else{
-                //Find Total Number of Neighbours
-                for (int i = -1; i < 2; i++) {
-                    for (int k = -1; k < 2; k++) {
-                        BlockState neighbourState = world.getBlockState(new BlockPos(conwayPos.getX() + i, conwayPos.getY(), conwayPos.getZ() + k));
-                        int newNeighbours;
-                        if (neighbourState.getBlock() == state.getBlock()) {
-                            noNeighbours++;
-                            newNeighbours = -1;
-                        } else {
-                            newNeighbours = 0;
-                        }
-                        BlockPos newPos = new BlockPos(conwayPos.getX() + i, conwayPos.getY(), conwayPos.getZ() + k);
-                        for (int a = -1; a < 2; a++) {
-                            for (int c = -1; c < 2; c++) {
-                                BlockState newNeighbourState = world.getBlockState(new BlockPos(newPos.getX() + a, newPos.getY(), newPos.getZ() + c));
-                                if (newNeighbourState.getBlock() == state.getBlock()) {
-                                    newNeighbours++;
+                else {
+                    //Find Total Number of Neighbours
+                    for (int i = -1; i < 2; i++) {
+                        for (int k = -1; k < 2; k++) {
+                            BlockState neighbourState = world.getBlockState(new BlockPos(conwayPos.getX() + i, conwayPos.getY(), conwayPos.getZ() + k));
+                            if (neighbourState.getBlock() == state.getBlock()) {
+                                noNeighbours++;
+                            } else {
+                                int newNeighbours = 0;
+                                BlockPos newPos = new BlockPos(conwayPos.getX() + i, conwayPos.getY(), conwayPos.getZ() + k);
+                                for (int a = -1; a < 2; a++) {
+                                    for (int c = -1; c < 2; c++) {
+                                        BlockState newNeighbourState = world.getBlockState(new BlockPos(newPos.getX() + a, newPos.getY(), newPos.getZ() + c));
+                                        if (newNeighbourState.getBlock() == state.getBlock()) {
+                                            newNeighbours++;
+                                        }
+                                    }
+                                }
+                                if (newNeighbours >= bornRule1 && newNeighbours <= bornRule2) {
+                                    ControllerItem.toBeBorn.add(newPos);
                                 }
                             }
                         }
-                        if (newNeighbours >= bornRule1 && newNeighbours <= bornRule2) {
-                            ControllerItem.toBeBorn.add(newPos);
-                        }
                     }
-                }
-//                user.sendMessage(Text.of("Block at " + conwayPos.toString() + " has " + noNeighbours + " neighbours"));
-                if (noNeighbours <= deathRule1 || noNeighbours >= deathRule2) {
-                    ControllerItem.toKill.add(conwayPos);
-                }
+                    //                user.sendMessage(Text.of("Block at " + conwayPos.toString() + " has " + noNeighbours + " neighbours"));
+                    if (noNeighbours <= deathRule1 || noNeighbours >= deathRule2) {
+                        ControllerItem.toKill.add(conwayPos);
+                    }
                 }
             }
 
