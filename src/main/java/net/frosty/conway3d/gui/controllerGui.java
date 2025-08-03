@@ -1,10 +1,7 @@
 package net.frosty.conway3d.gui;
 
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
-import io.github.cottonmc.cotton.gui.widget.WButton;
-import io.github.cottonmc.cotton.gui.widget.WGridPanel;
-import io.github.cottonmc.cotton.gui.widget.WLabel;
-import io.github.cottonmc.cotton.gui.widget.WTextField;
+import io.github.cottonmc.cotton.gui.widget.*;
 import net.frosty.conway3d.item.ControllerItem;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
@@ -57,6 +54,22 @@ public class controllerGui extends LightweightGuiDescription {
             updateRules(deathRuleField1, deathRuleField2, bornRuleField1, bornRuleField2);
         });
         root.add(submitButton,3,3,4,1);
+
+        WToggleButton toggleButton = new WToggleButton(Text.literal("2D-3D Toggle"));
+        toggleButton.setToggle(ControllerItem.is3D);
+        toggleButton.setOnToggle(on -> {
+            if (on) {
+                ControllerItem.is3D = true;
+                System.out.println("3D mode toggled...");
+            }
+            else {
+                ControllerItem.is3D = false;
+                System.out.println("2D mode toggled...");
+            }
+        });
+
+        root.add(toggleButton,3,4,4,1);
+
 
 
 
