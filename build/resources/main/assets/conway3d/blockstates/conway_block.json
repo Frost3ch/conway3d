@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "conway3d:block/conway_block"
+    }
+  }
+}
