@@ -35,7 +35,7 @@ public class Conway3D implements ModInitializer {
 				boolean isLeftClick = MinecraftClient.getInstance().options.attackKey.isPressed();
 				if (isLeftClick && !wasLeftClick){
 					if (client.player.getMainHandStack().getItem() == ModItems.GAME_CONTROLLER){
-						client.player.sendMessage(Text.of("Opening GUI..."));
+//						client.player.sendMessage(Text.of("Opening GUI..."));
 						MinecraftClient.getInstance().setScreen(new controllerConfigScreen(new controllerGui()));
 					}
 				}

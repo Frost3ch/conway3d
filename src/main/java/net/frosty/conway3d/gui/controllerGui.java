@@ -29,12 +29,12 @@ public class controllerGui extends LightweightGuiDescription {
         setRootPanel(root);
         root.setSize(270,120);
 
-        WLabel deathRuleLabel1 = new WLabel(Text.of("Underpop. Limit: "));
+        WLabel deathRuleLabel1 = new WLabel(Text.of("Survival Min: "));
         root.add(deathRuleLabel1,1,1);
         WTextField deathRuleField1 = new WTextField(Text.of(ControllerItem.deathRule1.toString()));
         root.add(deathRuleField1,4,1);
 
-        WLabel deathRuleLabel2 = new WLabel(Text.of("Overpop. Limit: "));
+        WLabel deathRuleLabel2 = new WLabel(Text.of("Survival Max: "));
         root.add(deathRuleLabel2,5,1);
         WTextField deathRuleField2 = new WTextField(Text.of(ControllerItem.deathRule2.toString()));
         root.add(deathRuleField2,8,1);

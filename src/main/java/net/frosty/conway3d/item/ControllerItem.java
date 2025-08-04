@@ -21,8 +21,8 @@ public class ControllerItem extends Item {
     public static Set<BlockPos> toKill = new HashSet<>();
     public static Set<BlockPos> toBeBorn = new HashSet<>();
 
-    public static Integer deathRule1 = 1;
-    public static Integer deathRule2 = 4;
+    public static Integer deathRule1 = 2;
+    public static Integer deathRule2 = 3;
 
     public static Integer bornRule1 = 3;
     public static Integer bornRule2 = 3;
@@ -77,7 +77,7 @@ public class ControllerItem extends Item {
                         }
                     }
 //                user.sendMessage(Text.of("Block at " + conwayPos.toString() + " has " + noNeighbours + " neighbours"));
-                    if (noNeighbours <= deathRule1 || noNeighbours >= deathRule2) {
+                    if (noNeighbours < deathRule1 || noNeighbours > deathRule2) {
                         ControllerItem.toKill.add(conwayPos);
                     }
                 }
@@ -106,7 +106,7 @@ public class ControllerItem extends Item {
                         }
                     }
                     //                user.sendMessage(Text.of("Block at " + conwayPos.toString() + " has " + noNeighbours + " neighbours"));
-                    if (noNeighbours <= deathRule1 || noNeighbours >= deathRule2) {
+                    if (noNeighbours < deathRule1 || noNeighbours > deathRule2) {
                         ControllerItem.toKill.add(conwayPos);
                     }
                 }
