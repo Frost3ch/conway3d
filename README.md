@@ -20,5 +20,4 @@ MOD DETAILS:
 - The mod only registers conways blocks that are placed/broken by hand or created by the simulation, so using world-edit or /fill won't work.
 - The game rules can be edited by left clicking the game controller.
 - The simulation can be advanced interacting (right click) with the game controller.
-  - Side note: if you hold down right click it will keep advancing.
-= 
+  - Side note: if you hold down right click it will keep advancing. 
